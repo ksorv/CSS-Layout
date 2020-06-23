@@ -1,13 +1,12 @@
 - Getting started
-
   - [Introduction](introduction.md)
 
-- Course
-
+- Posts
   - [Document Flow](docFlow.md)
   - [Floats n Fixes](floatsNfixes.md)
-  - [CSS Grids](grid.md)
+  - [CSS Grids](grids.md)
   - [CSS Flexbox](flex.md)
+  - [Positioning](positioning.md)
   - [Resources](resources.md)
 
 - Further & Congrats

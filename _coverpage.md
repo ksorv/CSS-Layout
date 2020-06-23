@@ -1,6 +1,6 @@
 <!-- _coverpage.md -->
 
-<img src="\_Logo.png" alt="logo" width="150" style="margin: 10px;"/>
+<img src="./img/_Logo.png" alt="logo" width="150" style="margin: 10px;"/>
 
 # CSS3 & Layouts <small>0.1</small>
 
