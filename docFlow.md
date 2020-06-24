@@ -59,7 +59,7 @@ This is a block here.
 
 Another one here. I think you got what I mean! If not see below:
 
-![Block and Inline Directions change with Mode of Writing](inline-block.png)
+![Block and Inline Directions change with Mode of Writing](./img/inline-block.png)
 
 **Block level elements** are generally laid out vertically based on _block flow direction_, which is based on parent's writing mode as shown above, and each one will appear on a new line below the last one, and they will be separated by any margin that is set on them.
 

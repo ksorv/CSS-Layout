@@ -1,4 +1,4 @@
-# Ultimate Flexbox
+# The Ultimate Flexbox Guide
 
 So, Why Flexbox? You may ask!
 Well, for vertical centering, I may answer!
@@ -13,7 +13,7 @@ center {
     transform: translate(-50%, -50%);
 }
 ```
-The above methods works cause the property translate uses element's size, and not document's.
+The above methods works cause the property `translate` uses element's size, and not document's.
 How do I know that? Oh, I found it somewhere sometime ago.
 
 So, let's get back to:
@@ -76,7 +76,6 @@ Any children that this container has, will now be called `flex-items`.
 
 That's almost it for terminology, Let's see how its used, shall we?
 
----
 ## How to use it?
 
 We have to break the usage section down in two parts as some properties are meant to be applied on the parent and some are for children.
@@ -88,18 +87,23 @@ It's children are then, by default flex-items.
 
 #### flex-direction
 This property defines the direction of the main-axis. It is the axis along which all the children will be laid out according to the configurations provided through other props.
-`flex-direction: row | column | row-reverse | column-reverse`
+```css
+flex-direction: row | column | row-reverse | column-reverse
+```
 
-![Flex Direction](./img/flex-direction.png)
+![Flex Direction](./img/flex-direction.png ':size=x200')
 
 - **row**: This is the default flex-direction. It lays children from left to right in _ltr_ and inverse in _rtl_.
 - **column**: Lays children from top to bottom.
 - **row-reverse**: This lays children from right to left in _ltr_ and inverse in _rtl_.
 - **column-reverse**: Lays children from bottom to top.
  
+ 
 #### justify-content
 This defines the alignment of children along the main axis. There are several values and can be used as:
-`justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly`
+```css
+justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly
+```
 
 These are the most used properties, there are some others like `start | end | left | right ... + safe | unsafe`, to know more about them head over [here](https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content).
 
@@ -115,7 +119,9 @@ The image above makes these props way easier to understand. Don't worry we'lll c
 
 #### align-items 
 This defines the alignment of children along the cross axis. There are several values and can be used as:
-`align-items: flex-start | flex-end | center | stretch | baseline`
+```css
+align-items: flex-start | flex-end | center | stretch | baseline
+```
 
 Align Items works on the current line. As per my understanding this applies to items in a single row. It'll take all the rows together and align them as you asked to.
 
@@ -133,7 +139,9 @@ Again, the image makes it a lot easier to understand.
 
 #### align-content
 Similar to `justify-content` property, but this one works along the cross axis.
-`align-content: flex-start | flex-end | center | space-between | space-around | space-evenly | stretch`
+```css
+    align-content: flex-start | flex-end | center | space-between | space-around | space-evenly | stretch
+```
 
 **Note**: This property has no effect when there is only one line of flex items. (Just for understading purposes) Cause it takes a row as a child and then behaves the same as `justify-content`.
 
@@ -150,7 +158,119 @@ Please, Google other values, if you need to. I really love this one picture for 
 
 #### flex-wrap
 
+Flex items try to fit in a single line, by default. You can allow items to wrap as per the width of container and content itself.
+```css
+flex-wrap: nowrap | wrap | wrap-reverse
+```
+
+![Flex Wrap](./img/flex-wrap.png)
+
+The values of this property are clear by para above and the image itself, I think.
+
+#### flex-flow
+Just a shorter way to write `flex-direction` & `flex-wrap` properties together.
+```css
+flex-flow: flex-direction flex-wrap
+```
+
+These are both values.
+
+**So that's about it for parent properties in flexbox. Let see what it has for children!**
+
+### Properties for Children, i.e, Using Flexbox Part-2
+These properties only work on children of a flexbox. The child can be a flexbox. & that is what gives flexbox power.
+You don't need to apply any property for a element to be flex-item, It's done by default when you assign 'display: flex` to it's parent.
+
+?> Also, note that `float`, `clear` and `vertical-align` have no effect on flex-item.
+
+So, let's get into it!
+
+#### order
+By default elements are laid out in the order as discussed in the document flow, or we can say in the order of source code.
+By specifying the `order` property, we can control the order in which elemens appear in the flex container.
+
+```css
+order: 3; /* default is 0 */
+```
+
+![Flex Children Order](./img/order.svg)
+
+Do remember **negative order puts element to the start**.
+
+#### align-self
+Align self property on a child allows us to override it's default alignment or the alignment specified by the `align-items`.
+Values are same as [align-items](/flex?id=align-items).
+
+```css
+align-self: auto | flex-start | flex-end | center | baseline | stretch;
+```
+
+![Align Self property](img/align-selg.png)
+
+#### flex-basis
+This property sets initial main size of a flex-item, or to be more clear it sets the size of content box unless otherwise set with `box-sizing`.
+
+!> No negative values and not supported in all browsers yet!
+
+```css
+flex-basis: width | auto; /* auto by default */
+/* width in case of flex-direction: row, height in flex-direction: column! */
+/* Also, this propert has priority over width or height property set on the element. */
+```
+
+![Flex Basis property](img/flex-basis.png)
+
+#### flex-grow
+When not applied, it defaults to 1. When applied it defines the proportion in which a flex item expands relative to other items(If there is space available for that). 
+
+So, let's say you have `flex-grow: 2`, so this item will expand twice as fast as compared to items with no `flex-grow` or `flex-grow: 1`.
+
+!> Can't be negative!
+
+```css
+flex-grow: n; /* n is a integer. */
+```
+
+![Flex Grow property](img/flex-grow.png ':size=x150')
+
+#### flex-shrink
+This is similar but inverse of flex-grow. It tells flex how much to shrink this child when there is not enough space available.
+
+So, this property defines the proportion in which a flex item shrinks more than other items in that container.
+
+!> Again, this one can't be negative.
+
+```css
+flex-shrink: n;
+```
 
 
+#### flex
+Shorthand for `flex-grow`, `flex-shrink` & `flex-basis`.
 
+?> Default: `0 1 auto` 
 
+```css
+flex: none | <'flex-grow'> <'flex-shrink'> <'flex-basis'>;
+```
+
+`flex-shrink` & `flex-basis` **are optional**.
+
+As [CSS-Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) says:
+**It is recommended that you use this shorthand property** rather than set the individual properties. The shorthand sets the other values intelligently.
+
+--
+
+This ends our flexbox module, I hope this post helps in some way or other.
+We'll be creating some practical things, most probably headers and stuff to show how flex can be used?
+
+### Resources
+
+Here are some high-end resources:
+
+- [W3C Candidate Recommendation](https://www.w3.org/TR/css-flexbox-1/#propdef-flex-shrink)
+- [MDN Flexbox Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout)
+ 
+ ---
+ 
+ Next we'll be looking at the most important thing in CSS(my view), i.e, Positioning! 
